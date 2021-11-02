@@ -6,8 +6,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
   </head>
   <body>
-    <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
-    <div class="message_holder"></div>
+    <h3 style='color: #ccc;font-size: 30px;'>No New message yet..</h3>
+    <div class="message_holder">
+        {% for msg in messages %}
+            <b style="color: #000"> {{ msg.name }}</b> {{ msg.message }}
+            {% endfor %}
+    </div>
 
     <form action="" method="POST">
       <input type="text" class="name" placeholder="name"/>

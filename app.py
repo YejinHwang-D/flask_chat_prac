@@ -17,24 +17,28 @@ class History2(db.Model):
     name = db.Column('name', db.String, nullable=True, default="System")
     message = db.Column('message', db.String)
 
-#History2.query.delete()
-#db.session.commit()
+#쿼리 전체 삭제
+History2.query.delete()
+db.session.commit()
 
 @app.route('/')
 def index():
-    #msg = History2.query.all()
-    return render_template('index.html')
+    messages = History2.query.all()
+    return render_template('index.html', messages=messages)
 
 @socketio.on('my event')
 def handle_my_custom_event(msg, methods=['GET', 'POST']):
     #name = list(msg.keys())
     #message = list(msg.values())
     #message = History2(message=message[0], name=name[0])
-    #db.session.add(message)
-    #db.session.commit()
-
+    name = msg.get('name')
+    message = msg.get('message')
+    insertMessage = History2(name=name, message=message)
+    db.session.add(insertMessage)
+    db.session.commit()
     
     print(msg, file=sys.stdout)
+    printAll = History2.query.all()
 
     socketio.emit('my response', msg)
 
