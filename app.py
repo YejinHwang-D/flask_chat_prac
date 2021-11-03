@@ -18,8 +18,8 @@ class History2(db.Model):
     message = db.Column('message', db.String)
 
 #쿼리 전체 삭제
-History2.query.delete()
-db.session.commit()
+#History2.query.delete()
+#db.session.commit()
 
 @app.route('/')
 def index():
@@ -38,7 +38,6 @@ def handle_my_custom_event(msg, methods=['GET', 'POST']):
     db.session.commit()
     
     print(msg, file=sys.stdout)
-    printAll = History2.query.all()
 
     socketio.emit('my response', msg)
 
