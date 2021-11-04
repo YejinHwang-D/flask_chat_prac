@@ -28,17 +28,11 @@ def index():
 
 @socketio.on('my event')
 def handle_my_custom_event(msg, methods=['GET', 'POST']):
-    #name = list(msg.keys())
-    #message = list(msg.values())
-    #message = History2(message=message[0], name=name[0])
     name = msg.get('name')
     message = msg.get('message')
     insertMessage = History2(name=name, message=message)
     db.session.add(insertMessage)
     db.session.commit()
-    
-    print(msg, file=sys.stdout)
-
     socketio.emit('my response', msg)
 
 
