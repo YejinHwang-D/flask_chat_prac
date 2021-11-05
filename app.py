@@ -21,7 +21,7 @@ class History2(db.Model):
 #History2.query.delete()
 #db.session.commit()
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     messages = History2.query.all()
     return render_template('index.html', messages=messages)
