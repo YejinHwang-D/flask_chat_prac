@@ -21,7 +21,7 @@ class History2(db.Model):
 #History2.query.delete()
 #db.session.commit()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     messages = History2.query.all()
     return render_template('index.html', messages=messages)
@@ -34,8 +34,6 @@ def handle_my_custom_event(msg, methods=['GET', 'POST']):
     db.session.add(insertMessage)
     db.session.commit()
     socketio.emit('my response', msg)
-
-
 
 
 
