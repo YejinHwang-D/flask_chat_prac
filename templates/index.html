@@ -26,8 +26,9 @@
       var socket = io.connect('http://127.0.0.1:5000');
 
       socket.on( 'connect', function() {
-        socket.emit( 'my event', {
-          data: '-- User Connected --'
+        socket.emit( 'connect_inter', {
+          name : 'System',
+          message : '-- User Connected --'
         } )
 
         var form = $( 'form' ).on( 'submit', function( e ) {
@@ -42,7 +43,6 @@
         } )
       } )
 
-      
       socket.on( 'my response', function( msg ) {
         if( typeof msg.name !== 'undefined' ) {
           $( 'h3' ).text("Start Chat")

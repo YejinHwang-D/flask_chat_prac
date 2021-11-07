@@ -18,8 +18,9 @@ class History2(db.Model):
     message = db.Column('message', db.String)
 
 #쿼리 전체 삭제
-#History2.query.delete()
-#db.session.commit()
+History2.query.delete()
+#deletex = db.session.query(History2).delete()
+db.session.commit()
 
 @app.route('/')
 def index():
@@ -33,6 +34,10 @@ def handle_my_custom_event(msg, methods=['GET', 'POST']):
     insertMessage = History2(name=name, message=message)
     db.session.add(insertMessage)
     db.session.commit()
+    socketio.emit('my response', msg)
+
+@socketio.on('connect_inter')
+def handle_my_custom_event2(msg, methods=['GET', 'POST']):
     socketio.emit('my response', msg)
 
 
