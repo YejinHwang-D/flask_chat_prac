@@ -1,9 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, datetime, request, redirect, session, url_for
 from flask_socketio import SocketIO, send
 from flask_sqlalchemy import SQLAlchemy
 
 import sys
-
+faberId = "id"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretkey'
@@ -18,14 +18,41 @@ class History2(db.Model):
     message = db.Column('message', db.String)
 
 #쿼리 전체 삭제
-History2.query.delete()
+#History2.query.delete()
 #deletex = db.session.query(History2).delete()
-db.session.commit()
+#db.session.commit()
 
 @app.route('/')
 def index():
     messages = History2.query.all()
     return render_template('index.html', messages=messages)
+
+@app.route('/credential')
+def credential():
+    return render_template('credential.html')
+
+@app.route("/invitation")
+def invitation() :
+    if "invitation" in session :
+        print("invitation: " + faberId, file=sys.stdout)
+        return render_template("invitation.html", invitation=True)
+    else :
+        return render_template("invitation.html", invitation=False)
+
+@app.route("/processCreateInvitation", methods=["POST"])
+def processCreateInvitation() :
+    session["invitation"] = True
+    faberId = request.form.get("faberId")
+    global aliceId
+    aliceId = request.form.get("aliceId")
+
+    return redirect(url_for("invitation"))
+
+@app.route("/processDeleteInvitation", methods=["POST"])
+def processDeleteInvitation():
+    session.pop("invitation", None)
+    return redirect(url_for("invitation"))
+
 
 @socketio.on('my event')
 def handle_my_custom_event(msg, methods=['GET', 'POST']):
