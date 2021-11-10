@@ -54,6 +54,10 @@ def processDeleteInvitation():
     return redirect(url_for("invitation"))
 
 
+
+
+
+
 @socketio.on('my event')
 def handle_my_custom_event(msg, methods=['GET', 'POST']):
     name = msg.get('name')
