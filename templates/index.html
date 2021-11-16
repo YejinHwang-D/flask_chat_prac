@@ -3,36 +3,81 @@
   <head>
     <title>Flask_Chat_App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>-->
-    <!-- <script src="https://cdn.socket.io/socket.io-5.1.1.js"></script> -->
     <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
-    
+    <link rel="stylesheet" href="../static/style.css">
   </head>
   <body>
-    <h2><a href="http://127.0.0.1:5000/invitation" style="text-decoration: none; color: rgb(119, 119, 119);font-size: 30px;">초대장 발급</a></h2>
-    <hr>
-    <h3 style='color: #ccc;font-size: 30px;'>No New message yet..</h3>
-    <div class="message_holder">
-        {% for msg in messages %}
-            <div><b style="color: #000"> {{ msg.name }}</b> {{ msg.message }}</div>
-            {% endfor %}
+    <header>
+      <nav class="menu">
+          <ul class="clearfix">
+              <a class="logo" href="http://127.0.0.1:5000/">Capstone Credential</a>
+              <span class="category">
+                  <li><a href="http://127.0.0.1:5000/">Home</a></li>
+                  <li><a href="http://127.0.0.1:5000/info">소개</a></li>
+                  <li><a href="http://127.0.0.1:5000/invitation">초대</a></li>
+                  <li><a href="http://127.0.0.1:5000/credential">인증서 발급</a></li>
+                  <li><a href="http://127.0.0.1:5000/mypage">마이페이지</a></li>
+                  <li id="chat"><a href="http://127.0.0.1:5000/logout"><small id="chat_btn">로그아웃</small></a></li>
+                  
+              </span>
+          </ul>
+      </nav>
+  </header>
+
+
+    
+  <div class="grid">
+    <div class="grid_item first">
+      <div class="list_holder">
+        <b>채팅방 목록</b>
+        <div>
+          <button id="user_list_btn">황예진</button>
+        </div>
+        <div>
+          <button id="user_list_btn">박경미</button>
+        </div>
+      </div>
+      <div id="optionBtn">
+        <button id="delete_chat">나가기</button>
+        <button id="invite_chat">채팅 시작하기</button>
+      </div>
     </div>
 
-    <form method="POST">
-      <input type="text" class="name" placeholder="name"/>
-      <input type="text" class="message" placeholder="messages"/>
-      <input type="submit"/>
-    </form>
+    <div class="grid_item two">
+      <div class="current_user_name">
+        <b id="user_name">황예진</b>
+      </div>
+      <div class="message_holder">
+        {% for msg in messages %}
+          <div class="chat_contents">
+            <div class="chatName"><b style="color: #000"> {{ msg.name }}</b></div>
+            <div class="chatMessage"><small>{{ msg.message }}</small></div>
+          </div>
+          {% endfor %}
+      </div>
+      <div>
+        <form method="POST" id="chatForm">
+          <input type="text" class="name" placeholder="name"/>
+          <input type="text" class="message" placeholder="messages"/>
+          <input type="submit" class="submitBtn"/>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
 
     <script type="text/javascript">
       var socket = io.connect('http://127.0.0.1:5000');
 
+      //연결 됐을 때
       socket.on( 'connect', function() {
-        socket.emit( 'connect_inter', {
-          name : 'System',
-          message : '-- User Connected --'
-        } )
-
         var form = $( 'form' ).on( 'submit', function( e ) {
           e.preventDefault()
           let name = $( 'input.name' ).val()
@@ -42,13 +87,15 @@
             message : user_input
           } )
           $( 'input.message' ).val( '' ).focus()
+          $(".message_holder").scrollTop($(".message_holder")[0].scrollHeight);
         } )
       } )
 
+      //받기
       socket.on( 'my response', function( msg ) {
         if( typeof msg.name !== 'undefined' ) {
-          $( 'h3' ).text("Start Chat")
-          $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.name+'</b> '+msg.message+'</div>' )
+          $( 'div.message_holder' ).append( '<div class="chat_contents"><div class="chatName"><b style="color: #000">'+msg.name
+            +'</b></div><div class="chatMessage"><small>'+msg.message+'</small></div></div>' )
         }
       })
     </script>
