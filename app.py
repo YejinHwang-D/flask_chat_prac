@@ -1,4 +1,5 @@
-from flask import Flask, render_template, datetime, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for
+from datetime import datetime
 from flask_socketio import SocketIO, send
 from flask_sqlalchemy import SQLAlchemy
 
@@ -17,10 +18,10 @@ class History2(db.Model):
     name = db.Column('name', db.String, nullable=True, default="System")
     message = db.Column('message', db.String)
 
+
 #쿼리 전체 삭제
 #History2.query.delete()
 #deletex = db.session.query(History2).delete()
-#db.session.commit()
 
 @app.route('/')
 def index():
