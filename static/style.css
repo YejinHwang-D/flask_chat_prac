@@ -1,0 +1,358 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    /* background: url("img/image3.jpg") top center no-repeat rgba(0,0,0, 0.2);
+    background-size: 200% 350%; */
+}
+
+body {
+    padding-top: 70px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+nav {
+    font-size: 14px;
+    position: relative;
+    box-shadow: 0 5px 16px 0 rgb(0 0 0 / 8%);
+}
+
+nav a {
+    line-height: 50px;
+    height: auto;
+}
+
+.menu {
+    width: 100%;
+
+    text-align: center;    
+    background-position: center;
+    background-color: #333333; color:white;
+    position: absolute;
+    z-index: 1000;
+    position: fixed;
+}
+
+.logo {
+    font-size: 17px;
+    float: left;
+    margin-left: 30px;
+    text-decoration: none;
+    /*background: linear-gradient(to right top, #689dff, #7DEDFF);*/
+    color: white;
+    -webkit-background-clip: text;
+}
+
+.category {
+    margin-right: 5%;
+}
+
+.clearfix {
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    /* text-align: right; */
+}
+
+span li {
+    display: inline-block;
+}
+
+span li a {
+    color: #ffffff;
+    text-align: center;
+    padding: 14.5px 16px;
+}
+
+span li a:hover {
+    color: #7DEDFF;
+    font-weight: normal;
+}
+
+.list_holder {
+    margin: 3%;
+    text-align: center;
+    padding: 12px 0 12px 0;
+}
+
+.list_holder > div {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.message_holder {
+    margin: 6% 3% 3% 3%;
+    width: 97%;
+    height: 82%;
+
+    /* 스크롤 */
+    overflow-y: scroll;
+}
+
+
+
+
+
+#chat_btn {
+    background-color: rgb(28, 161, 193);
+    border-radius: 5px;
+    border: 10px rgb(28, 161, 193) solid;
+    /* #689dff */
+    color: white;
+    font-size: 13px;
+}
+
+
+#sideBar {
+    background: rgba(0, 0, 0, 0.15); 
+    padding: 0.25rem; 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    height: 3rem; 
+    box-sizing: border-box; 
+
+    float: left;
+    width: 30%;
+}
+
+#chatFormDiv {
+    background: rgba(0, 0, 0, 0.15); 
+    padding: 0.25rem; 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    height: 3rem; 
+    box-sizing: border-box;
+
+    float: left;
+    width: 70%;
+}
+
+#optionBtn {
+    width: 20%;
+    text-align: center;
+}
+
+#invite_chat {
+    background: rgb(28, 161, 193); 
+    border: none;
+    outline: none; 
+    color: #fff; 
+
+    width: 15%;
+    height: 5%;
+
+    position: fixed; 
+    bottom: 0;
+    margin-bottom: 8px;
+}
+
+#delete_chat {
+    background: #FF5C4C; 
+    border: none;
+    outline: none; 
+    color: #fff; 
+
+    width: 15%;
+    height: 5%;
+    
+    /*display: none;*/
+    position: fixed; 
+    bottom: 3rem; 
+}
+
+
+
+
+
+form { 
+    background: rgba(0, 0, 0, 0.15); 
+    padding: 0.25rem; 
+    position: fixed; 
+    bottom: 0; 
+    display: flex; 
+    height: 3rem; 
+    box-sizing: border-box; 
+    backdrop-filter: blur(10px);
+
+    float: left;
+    width: 80%;
+  }
+
+
+.name { 
+      border: none; 
+      padding: 0 1rem; 
+      /*flex-grow: 1;*/
+      border-radius: 5px; 
+      margin: 0.25rem; 
+      width: 15%;
+}
+
+.message { 
+    border: none; 
+    padding: 0 1rem; 
+    /*flex-grow: 1;*/
+    border-radius: 5px; 
+    margin: 0.25rem; 
+    width: 70%;
+}
+
+.submitBtn {
+    background: rgb(28, 161, 193); 
+    border: none; 
+    padding: 0 1rem; 
+    margin: 0.25rem; 
+    border-radius: 3px; 
+    outline: none; 
+    color: #fff; 
+
+    width: 15%;
+}
+
+input:focus { 
+    outline: none; 
+}
+
+#chatForm { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+
+#chatForm > li {
+    padding: 0.5rem 1rem; 
+}
+
+#chatForm > li:nth-child(odd) { 
+    background: #efefef; 
+}
+
+
+
+
+
+#ChatForm {
+    background: rgba(0, 0, 0, 0.15); 
+    padding: 0.25rem; 
+    position: fixed; 
+    bottom: 0;
+}
+
+
+
+
+
+
+.grid {
+    width: 100%;
+    height: 93%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.15);
+    overflow: hidden; /*부모 높이를 잊어버리기때문에 다시 높이를 생기게끔해주는 float해재 기법*/
+    left: 0;
+    bottom: 0;
+
+    position: fixed;
+}
+
+.grid_item {
+    width: 100px;
+    height: 100px;
+    float: left; /*가로 정렬을 하기위한 float*/
+}
+.grid_item.first {
+    background-color: white;
+    width: 20%;
+    height: 100%;
+}
+.grid_item.two {
+    background-color: white;
+    width: 80%;
+    height: 100%;
+}
+
+.current_user_name {
+    background-color: #1CA1C1;
+    width: 100%;
+    height: 7%;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    position: fixed;
+
+
+    color: white;
+}
+
+#user_name {
+    margin-left: 3rem;
+}
+
+.chat_contents {
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.chat_contents b {
+    margin-right: 4rem;
+    width: 100px;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    
+}
+
+
+.chatName {
+    width: 12%;
+    float: left;
+    background-color: white;
+}
+
+.chatMessage {
+    width: 82%;
+    height: 2.5rem;
+
+    float: left;
+
+    background-color: rgb(241, 241, 241);
+    border-radius: 0px 15px 15px 15px;
+}
+
+.chatMessage small {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    margin: 0 20px 0 20px;
+}
+
+
+
+
+
+#user_list_btn {
+    background: #F4F5F9; 
+    border: none; 
+    outline: none; 
+    color: #1CA1C1; 
+
+    bottom: 0; 
+
+    width: 100%;
+    height: 50px;
+
+    font-weight: bold;
+    font-size: 16px;
+}
